@@ -2,7 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+//import {createStore,applyMiddleware} from 'redux';
+//import {Provider} from "react-redux";
+//import thunk from "redux-thunk";
+//import color_reducer from "./_reducers/color.reducer";
+
 import { userActions } from '../_actions';
+
+//let store = createStore(color_reducer, applyMiddleware(thunk))
 
 class LoginPage extends React.Component {
     constructor(props) {

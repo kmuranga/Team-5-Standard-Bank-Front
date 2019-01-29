@@ -1,6 +1,7 @@
-//export * from './alert.actions';
-//export * from './user.actions';
-//const API_ROOT = 
+export * from './alert.actions';
+export * from './user.actions';
+/*
+const API_ROOT = 
 
 const Auth = {
     current: () =>
@@ -12,3 +13,4 @@ const Auth = {
     save: user =>
       requests.put('/user', { user })
   };
+  */
