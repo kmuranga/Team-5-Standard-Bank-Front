@@ -1,6 +1,7 @@
 import config from 'config';
 import { authHeader } from '../_helpers';
-
+//import axios from "axios";
+//import { type } from 'os';
 export const userService = {
     login,
     logout,
@@ -27,6 +28,13 @@ function login(username, password) {
             return user;
         });
 }
+/*
+function changeColor(color){
+    return{
+        type:"CHANGE_COLOR",
+        color:color
+    } 
+}*/
 
 function logout() {
     // remove user from local storage to log user out
