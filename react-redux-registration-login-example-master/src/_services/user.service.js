@@ -62,15 +62,16 @@ function getById(id) {
 }
 
 function register(user) {
+    console.log(JSON.stringify(user));
     const requestOptions = {
         method: 'POST',
-        mode: 'cors',
+        mode: 'no-cors',
         cache: 'no-cache',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     };
 
-    return fetch(`${URL}/api/DummyModels`, requestOptions).then(handleResponse);
+    return fetch(`${URL}/api/DummyModels/1`, requestOptions).then(handleResponse);
 }
 
 function update(user) {
