@@ -18,27 +18,114 @@
         margin-top: -($height / 2);
         transform: translateX(-50%);
       }
-  }/*
+  }
+  $background : #DCDCDC;
+  $blue: #337ab7;
+.jumbotron{
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
 #app{
-    background-color: #FFDC00;
-    width: 100px;
-    height: 100px;
-    margin: 5 auto;
-}*/
-$background : #DCDCDC;
-html,body{
+    background-color:$background;
+    text-align:center;
+    padding: 0;
+    display: block;
+    //width: 100px;
+   // height: 100px;
+    margin: 0;
+}
+//
+body{
+margin-top: 0;
+
+}
+body{
     height: 100%;
     width: 100%;
-    background-color: $background;
+    padding: 0;
+    margin: 0;
+    //background-color: $background;
     font-size: 13px;
 }
-
-.mainSector{
-    background-color: $background;
-    width: 400px; 
-    @include center(400px);
+label{
+    float: left;
 }/*
+.btn-primary {
+    color: var(--button-color);
+    background-color: var(--button-background-color);
+    border-radius: var(--border-radius);
+  }*/
+  ;
+button{
+    float: left;
+    //width: 100px;
+   // height: 30px;
+    background-color: $blue;
+	//-moz-border-radius:5px;
+	//-webkit-border-radius:5px;
+	border-radius:5px;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	padding:10px 46px;
+}
+a{
+    color:$blue;
+    //padding-right: 10px;
+   // margin-top: 20px;
+    vertical-align: middle;
+    font-family: helvetica;
+    text-decoration: none;
+}
+  
+a:hover {
+    text-decoration: underline;
+}
+input{
+    width: 400px;
+    border: 1px solid $blue;
+	border-radius: 5px;
+    height: 30px;
+    font-size:16px;
+    padding-left: 5px;
+}
+h2 {
+    margin-top: 0;
+    font-size: 30px;
+}
+.mainSector{
+    margin-top: 0;
+    background-color: $background;
+    height: 500px;
+    text-align:center;
+    border:1px solid blue;
+}
+Link{
+    float: left;
+}
+.help-block{
+    color: red;
+    font-size: large;
+}
+.form-group{
+    display:block;
+    width: 400px;
+    text-align:center;
+    height: 50px;
+    margin: 0 auto;
+    font-size: 20px;
+    padding-bottom: 25px;
+    margin-bottom: 15px
+}
+    //@include center(400px);
+
 form{
     background-color: $background;
-     @include center(400px);
-}*/
+    text-align:center;
+    margin: 0 auto;
+    // @include center(400px);
+}
+.text-center{
+    text-align:center;
+    background-color: white;
+}
