@@ -15,28 +15,27 @@ var URL = 'https://localhost:44312';
 function login(username, password) {
     const requestOptions = {
         method: 'POST',
-        mode: 'cors',
+        mode: 'no-cors',
         cache: 'no-cache',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: /*JSON.stringify({ username, password })*/{
+            "id": 1,
+            "firstName": "Tafara",
+            "lastName": "Tafara",
+            "username": "me@gmail.com",
+            "password": "123"
+        }
     };
-
-    return fetch(`${URL}/users/authenticate`, requestOptions)
+    console.log("login attempt");
+    return fetch(`${URL}/api/DummyModels/login`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(user));
-
+            console.log("handleResponse:"+handleResponse);
             return user;
         });
 }
-/*
-function changeColor(color){
-    return{
-        type:"CHANGE_COLOR",
-        color:color
-    } 
-}*/
 
 function logout() {
     // remove user from local storage to log user out
@@ -46,15 +45,19 @@ function logout() {
 function getAll() {
     const requestOptions = {
         method: 'GET',
+        mode: 'no-cors',
+        cache: 'no-cache',
         headers: authHeader()
     };
 
-    return fetch(`${URL}/users`, requestOptions).then(handleResponse);
+    return fetch(`${URL}/api/DummyModels`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
     const requestOptions = {
         method: 'GET',
+        mode: 'no-cors',
+        cache: 'no-cache',
         headers: authHeader()
     };
 
@@ -71,12 +74,14 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`${URL}/api/DummyModels/1`, requestOptions).then(handleResponse);
+    return fetch(`${URL}/api/DummyModels/2`, requestOptions).then(handleResponse);
 }
 
 function update(user) {
     const requestOptions = {
         method: 'PUT',
+        mode: 'no-cors',
+        cache: 'no-cache',
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     };
@@ -88,10 +93,12 @@ function update(user) {
 function _delete(id) {
     const requestOptions = {
         method: 'DELETE',
+        mode: 'no-cors',
+        cache: 'no-cache',
         headers: authHeader()
     };
 
-    return fetch(`${URL}/DummyModels/${id}`, requestOptions).then(handleResponse);
+    return fetch(`${URL}/api/DummyModels/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
