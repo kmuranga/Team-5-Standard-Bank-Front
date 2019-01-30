@@ -1,4 +1,4 @@
-import config from 'config';
+const fetch = require("node-fetch");
 import { authHeader } from '../_helpers';
 //import axios from "axios";
 //import { type } from 'os';
@@ -11,12 +11,13 @@ export const userService = {
     update,
     delete: _delete
 };
-var URL = 'https://localhost:44312';
+var URL = 'https://localhost:44312/api/DummyModels';
 function login(username, password) {
     const requestOptions = {
         method: 'POST',
         mode: 'no-cors',
         cache: 'no-cache',
+        strictSSL: false,
         headers: { 'Content-Type': 'application/json' },
         body: /*JSON.stringify({ username, password })*/{
             "id": 1,
@@ -27,7 +28,7 @@ function login(username, password) {
         }
     };
     console.log("login attempt");
-    return fetch(`${URL}/api/DummyModels/login`, requestOptions)
+    return fetch(`${URL}/login`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -50,7 +51,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`${URL}/api/DummyModels`, requestOptions).then(handleResponse);
+    return fetch(`${URL}`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
@@ -61,7 +62,7 @@ function getById(id) {
         headers: authHeader()
     };
 
-    return fetch(`${URL}/api/DummyModels/${id}`, requestOptions).then(handleResponse);
+    return fetch(`${URL}/users/getUser/?id=/${id}`, requestOptions).then(handleResponse);
 }
 
 function register(user) {
@@ -86,7 +87,7 @@ function update(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`${URL}/api/DummyModels/${user.id}`, requestOptions).then(handleResponse);;
+    return fetch(`${URL}/${user.id}`, requestOptions).then(handleResponse);;
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -98,7 +99,7 @@ function _delete(id) {
         headers: authHeader()
     };
 
-    return fetch(`${URL}/api/DummyModels/${id}`, requestOptions).then(handleResponse);
+    return fetch(`${URL}/delete/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
