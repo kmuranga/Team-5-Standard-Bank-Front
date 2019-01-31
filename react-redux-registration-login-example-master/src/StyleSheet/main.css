@@ -3,6 +3,10 @@
   padding-bottom: 48px;
 }
 
+body {
+  margin: 0px;
+}
+
 #app {
   background-color: #DCDCDC;
   text-align: center;
@@ -11,47 +15,36 @@
   margin: 0;
 }
 
-body {
-  margin-top: 0;
-}
-
-body {
-  height: 100%;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  font-size: 13px;
-}
-
 label {
   float: left;
 }
 
-/*
-.btn-primary {
-    color: var(--button-color);
-    background-color: var(--button-background-color);
-    border-radius: var(--border-radius);
-  }*/
 button {
   float: left;
   background-color: #337ab7;
   border-radius: 5px;
-  color: #ffffff;
+  color: white;
   font-family: Arial;
   font-size: 16px;
   padding: 10px 46px;
+  vertical-align: middle;
 }
 
 a {
   color: #337ab7;
-  vertical-align: middle;
   font-family: helvetica;
   text-decoration: none;
+  display: inline-block;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+.btn-link {
+  padding-top: 10px;
+  padding-right: 150px;
+  vertical-align: middle;
 }
 
 input {
@@ -73,11 +66,6 @@ h2 {
   background-color: #DCDCDC;
   height: 500px;
   text-align: center;
-  border: 1px solid blue;
-}
-
-Link {
-  float: left;
 }
 
 .help-block {
@@ -88,7 +76,6 @@ Link {
 .form-group {
   display: block;
   width: 400px;
-  text-align: center;
   height: 50px;
   margin: 0 auto;
   font-size: 20px;
@@ -96,14 +83,7 @@ Link {
   margin-bottom: 15px;
 }
 
-form {
-  background-color: #DCDCDC;
-  text-align: center;
-  margin: 0 auto;
-}
-
 .text-center {
   text-align: center;
-  background-color: white;
 }
 /*# sourceMappingURL=main.css.map */

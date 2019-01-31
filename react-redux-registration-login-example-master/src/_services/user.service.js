@@ -11,23 +11,21 @@ export const userService = {
     update,
     delete: _delete
 };
-var URL = 'https://localhost:44312';
+const URL = 'https://localhost:44312';
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
 function login(username, password) {
     const requestOptions = {
         method: 'POST',
-        mode: 'no-cors',
         cache: 'no-cache',
-        headers: { 'Content-Type': 'application/json' },
-        body: /*JSON.stringify({ username, password })*/{
-            "id": 1,
-            "firstName": "Tafara",
-            "lastName": "Tafara",
-            "username": "me@gmail.com",
-            "password": "123"
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+        /*JSON.stringify({ username, password })*/
+        body: {
+            "username": username,
+            "pass": password
         }
     };
     console.log("login attempt");
-    return fetch(`${URL}/api/DummyModels/login`, requestOptions)
+    return fetch(`${URL}/api/DummyModels/users/login?username=${username}&pass=${password}`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -45,7 +43,6 @@ function logout() {
 function getAll() {
     const requestOptions = {
         method: 'GET',
-        mode: 'no-cors',
         cache: 'no-cache',
         headers: authHeader()
     };
@@ -68,13 +65,23 @@ function register(user) {
     console.log(JSON.stringify(user));
     const requestOptions = {
         method: 'POST',
-        mode: 'no-cors',
-        cache: 'no-cache',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
+        headers: { 
+            'Accept': 'application/json',
+            'Content-Type':'application/json' 
+        },//
+        body: JSON.stringify({
+            FirstName: user.firstName,
+            LastName: user.lastName,
+            Username: user.username,
+            Password: user.password
+        })
     };
 
-    return fetch(`${URL}/api/DummyModels/2`, requestOptions).then(handleResponse);
+    return fetch(`${URL}/api/DummyModels/users/register`, requestOptions).then(
+        function(handleResponse){
+            console.log(handleResponse);
+        }
+    );
 }
 
 function update(user) {
@@ -83,7 +90,13 @@ function update(user) {
         mode: 'no-cors',
         cache: 'no-cache',
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
+        body: /*JSON.stringify(user)*/{
+            "Id": user.Id,
+            "FirstName": user.FirstName,
+            "LastName": user.LastName,
+            "Username": user.Username,
+            "Password": user.Password
+        }
     };
 
     return fetch(`${URL}/api/DummyModels/${user.id}`, requestOptions).then(handleResponse);;
@@ -93,12 +106,11 @@ function update(user) {
 function _delete(id) {
     const requestOptions = {
         method: 'DELETE',
-        mode: 'no-cors',
         cache: 'no-cache',
         headers: authHeader()
     };
 
-    return fetch(`${URL}/api/DummyModels/${id}`, requestOptions).then(handleResponse);
+    return fetch(`${URL}/api/DummyModels/users/delete/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
