@@ -1,4 +1,4 @@
-import config from 'config';
+const fetch = require("node-fetch");
 import { authHeader } from '../_helpers';
 //import axios from "axios";
 //import { type } from 'os';
@@ -11,8 +11,9 @@ export const userService = {
     update,
     delete: _delete
 };
+
 const URL = 'https://localhost:44312';
-const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
 function login(username, password) {
     const requestOptions = {
         method: 'POST',
@@ -47,7 +48,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`${URL}/api/DummyModels`, requestOptions).then(handleResponse);
+    return fetch(`${URL}`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
@@ -58,7 +59,7 @@ function getById(id) {
         headers: authHeader()
     };
 
-    return fetch(`${URL}/api/DummyModels/${id}`, requestOptions).then(handleResponse);
+    return fetch(`${URL}/users/getUser/?id=/${id}`, requestOptions).then(handleResponse);
 }
 
 function register(user) {
@@ -99,7 +100,7 @@ function update(user) {
         }
     };
 
-    return fetch(`${URL}/api/DummyModels/${user.id}`, requestOptions).then(handleResponse);;
+    return fetch(`${URL}/${user.id}`, requestOptions).then(handleResponse);;
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
