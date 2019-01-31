@@ -1,5 +1,6 @@
 const cacheName = "v1.0";
 
+// list of all the pages/documents you would like to cache
 const cacheAssets = ["index.html"];
 
 // Call Install Event
