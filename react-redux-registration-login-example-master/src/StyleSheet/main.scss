@@ -1,90 +1,57 @@
-@mixin center($width: null, $height: null) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-  
-    @if not $width and not $height {
-        transform: translate(-50%, -50%);
-      } @else if $width and $height {
-        width: $width;
-        height: $height;
-        margin: -($width / 2) #{0 0} -($height / 2);
-      } @else if not $height {
-        width: $width;
-        margin-left: -($width / 2);
-        transform: translateY(-50%);
-      } @else {
-        height: $height;
-        margin-top: -($height / 2);
-        transform: translateX(-50%);
-      }
-  }
-  $background : #DCDCDC;
-  $blue: #337ab7;
+$background : #DCDCDC;
+$blue: #337ab7;
+$borderRadius: 5px;
+@mixin left() {
+    float: left;
+}
+@mixin center(){
+    text-align:center;
+}
 .jumbotron{
     padding-top: 48px;
     padding-bottom: 48px;
 }
+body{
+    margin: 0px;
+}
 #app{
     background-color:$background;
-    text-align:center;
+     @include center();
     padding: 0;
     display: block;
-    //width: 100px;
-   // height: 100px;
     margin: 0;
-}
-//
-body{
-margin-top: 0;
-
-}
-body{
-    height: 100%;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    //background-color: $background;
-    font-size: 13px;
 }
 label{
-    float: left;
-}/*
-.btn-primary {
-    color: var(--button-color);
-    background-color: var(--button-background-color);
-    border-radius: var(--border-radius);
-  }*/
-  ;
+    @include left();// float: left;;
+}
 button{
-    float: left;
-    //width: 100px;
-   // height: 30px;
+     @include left();
     background-color: $blue;
-	//-moz-border-radius:5px;
-	//-webkit-border-radius:5px;
-	border-radius:5px;
-	color:#ffffff;
+	border-radius:$borderRadius;
+	color: white;
 	font-family:Arial;
 	font-size:16px;
-	padding:10px 46px;
+    padding:10px 46px;
+    vertical-align: middle;
 }
 a{
     color:$blue;
-    //padding-right: 10px;
-   // margin-top: 20px;
-    vertical-align: middle;
     font-family: helvetica;
     text-decoration: none;
+    display: inline-block;
 }
-  
 a:hover {
     text-decoration: underline;
+}
+.btn-link{
+    padding-top: 10px;
+    padding-right: 150px;
+    vertical-align: middle;
 }
 input{
     width: 400px;
     border: 1px solid $blue;
-	border-radius: 5px;
+	border-radius: $borderRadius;
     height: 30px;
     font-size:16px;
     padding-left: 5px;
@@ -97,11 +64,7 @@ h2 {
     margin-top: 0;
     background-color: $background;
     height: 500px;
-    text-align:center;
-    border:1px solid blue;
-}
-Link{
-    float: left;
+     @include center();
 }
 .help-block{
     color: red;
@@ -110,22 +73,12 @@ Link{
 .form-group{
     display:block;
     width: 400px;
-    text-align:center;
     height: 50px;
     margin: 0 auto;
     font-size: 20px;
     padding-bottom: 25px;
     margin-bottom: 15px
 }
-    //@include center(400px);
-
-form{
-    background-color: $background;
-    text-align:center;
-    margin: 0 auto;
-    // @include center(400px);
-}
 .text-center{
-    text-align:center;
-    background-color: white;
+     @include center();
 }
