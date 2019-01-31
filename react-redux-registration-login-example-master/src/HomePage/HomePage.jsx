@@ -10,43 +10,34 @@ class HomePage extends React.Component {
   }
 
   handleDeleteUser(id) {
-    return e => this.props.dispatch(userActions.delete(id));
+    return (e) => this.props.dispatch(userActions.delete(id));
   }
 
   render() {
     const { user, users } = this.props;
     return (
-      <div className="col-md-6 col-md-offset-3">
+      <div className="mainSection">
+      <h1>Hi Tired Programmers Here!</h1>
+        <img src="tired.jpg" alt="Tired Coders"/>
         <h1>Hi {user.firstName}!</h1>
         <p>You're logged in with React!!</p>
         <h3>All registered users:</h3>
         {users.loading && <em>Loading users...</em>}
-        {users.error && (
-          <span className="text-danger">ERROR: {users.error}</span>
-        )}
-        {users.items && (
-          <ul>
-            {users.items.map((user, index) => (
-              <li key={user.id}>
-                {user.firstName + " " + user.lastName}
-                {user.deleting ? (
-                  <em> - Deleting...</em>
-                ) : user.deleteError ? (
-                  <span className="text-danger">
-                    {" "}
-                    - ERROR: {user.deleteError}
-                  </span>
-                ) : (
-                  <span>
-                    {" "}
-                    - <a onClick={this.handleDeleteUser(user.id)}>Delete</a>
-                  </span>
-                )}
-              </li>
-            ))}
-          </ul>
-        )}
-        <Posts />
+        {users.error && <span className="text-danger">ERROR: {users.error}</span>}
+          {users.items && 
+            <ul>
+              {users.items.map((user, index) => 
+                <li key={user.id}>
+                  {user.firstName + " " + user.lastName}
+                  {user.deleting ? <em> - Deleting...</em> 
+                  : user.deleteError ?  <span className="text-danger">{" "}- ERROR: {user.deleteError} </span> : 
+                    <span> - <a onClick={this.handleDeleteUser(user.id)}>Delete</a></span> 
+                    }
+                </li>
+              )}
+            </ul>
+          }
+        
         <p>
           <Link to="/login">Logout</Link>
         </p>
@@ -54,7 +45,7 @@ class HomePage extends React.Component {
     );
   }
 }
-
+/*
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
@@ -62,7 +53,7 @@ if ("serviceWorker" in navigator) {
       .then(reg => console.log("Service Worker: Registered (Pages)"))
       .catch(err => console.log(`Service Worker: Error: ${err}`));
   });
-}
+}*/
 
 function mapStateToProps(state) {
   const { users, authentication } = state;

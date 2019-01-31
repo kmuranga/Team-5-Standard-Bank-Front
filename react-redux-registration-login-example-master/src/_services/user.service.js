@@ -12,18 +12,14 @@ export const userService = {
     delete: _delete
 };
 
-const URL = 'https://localhost:44312';
+//const URL = 'https://localhost:44312';
+const URL = 'http://stdbank.retrotest.co.za';
 
 function login(username, password) {
     const requestOptions = {
-        method: 'POST',
+        method: 'GET',
         cache: 'no-cache',
-        headers: { 'Content-Type': 'application/json; charset=utf-8' },
-        /*JSON.stringify({ username, password })*/
-        body: {
-            "username": username,
-            "pass": password
-        }
+        headers: { 'Content-Type': 'application/json; charset=utf-8' }
     };
     console.log("login attempt");
     return fetch(`${URL}/api/DummyModels/users/login?username=${username}&pass=${password}`, requestOptions)
@@ -54,7 +50,6 @@ function getAll() {
 function getById(id) {
     const requestOptions = {
         method: 'GET',
-        mode: 'no-cors',
         cache: 'no-cache',
         headers: authHeader()
     };
@@ -88,7 +83,6 @@ function register(user) {
 function update(user) {
     const requestOptions = {
         method: 'PUT',
-        mode: 'no-cors',
         cache: 'no-cache',
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
         body: /*JSON.stringify(user)*/{
