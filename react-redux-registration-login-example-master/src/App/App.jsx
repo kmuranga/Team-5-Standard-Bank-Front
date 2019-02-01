@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { history } from '../_helpers';
@@ -25,15 +25,18 @@ class App extends React.Component {
         return (
             <div className="jumbotron">
                 <div className="container">
-                    <div className="col-sm-8 col-sm-offset-2">
+                    <div className="mainSection">
                         {alert.message &&
                             <div className={`alert ${alert.type}`}>{alert.message}</div>
                         }
                         <Router history={history}>
                             <div>
-                                <PrivateRoute exact path="/" component={HomePage} />
-                                <Route path="/login" component={LoginPage} />
-                                <Route path="/register" component={RegisterPage} />
+                                <Switch>
+                                    <PrivateRoute exact path="/" component={HomePage} />
+                                    <Route path="/login" component={LoginPage} />
+                                    <Route path="/register" component={RegisterPage} />
+                                    <Route path="*" component={LoginPage} />
+                                </Switch>
                             </div>
                         </Router>
                     </div>

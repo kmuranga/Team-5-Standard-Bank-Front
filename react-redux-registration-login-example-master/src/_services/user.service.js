@@ -13,7 +13,7 @@ export const userService = {
 };
 
 //const URL = 'https://localhost:44312';
-const URL = 'http://stdbank.retrotest.co.za';
+const URL = 'http://stdbank.retrotest.co.za/api/DummyModels';
 
 function login(username, password) {
     const requestOptions = {
@@ -22,7 +22,7 @@ function login(username, password) {
         headers: { 'Content-Type': 'application/json; charset=utf-8' }
     };
     console.log("login attempt");
-    return fetch(`${URL}/api/DummyModels/users/login?username=${username}&pass=${password}`, requestOptions)
+    return fetch(`${URL}/users/login?username=${username}&pass=${password}`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -64,7 +64,7 @@ function register(user) {
         headers: { 
             'Accept': 'application/json',
             'Content-Type':'application/json' 
-        },//
+        },
         body: JSON.stringify({
             FirstName: user.firstName,
             LastName: user.lastName,
@@ -73,7 +73,7 @@ function register(user) {
         })
     };
 
-    return fetch(`${URL}/api/DummyModels/users/register`, requestOptions).then(
+    return fetch(`${URL}/users/register`, requestOptions).then(
         function(handleResponse){
             console.log(handleResponse);
         }
@@ -85,13 +85,13 @@ function update(user) {
         method: 'PUT',
         cache: 'no-cache',
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: /*JSON.stringify(user)*/{
+        body: JSON.stringify({
             "Id": user.Id,
             "FirstName": user.FirstName,
             "LastName": user.LastName,
             "Username": user.Username,
             "Password": user.Password
-        }
+        })
     };
 
     return fetch(`${URL}/${user.id}`, requestOptions).then(handleResponse);;
@@ -105,7 +105,7 @@ function _delete(id) {
         headers: authHeader()
     };
 
-    return fetch(`${URL}/api/DummyModels/users/delete/${id}`, requestOptions).then(handleResponse);
+    return fetch(`${URL}/users/delete/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
