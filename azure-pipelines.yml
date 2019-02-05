@@ -1,0 +1,46 @@
+resources:
+- repo: self
+
+pool:
+  vmImage: Hosted Ubuntu 1604
+  demands: npm
+
+steps:
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    verbose: false
+
+- bash: |
+   # Write your commands here
+   #cd  react-redux-registration-login-example-master
+   npm i --save-exact --save terser@3.14
+   
+   npm install yarn
+   
+   yarn add terser@3.14 --exact
+   
+   npm test
+   
+   # Use the environment variables input below to pass secret variables to this script
+  displayName: 'Build and run tests'
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: .idea'
+  inputs:
+    TargetFolder: .idea
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: .idea
+
+- bash: |
+   # Write your commands here
+   npm run build
+   # Use the environment variables input below to pass secret variables to this script
+  displayName: 'Bash Script'
+
+
+
+
